@@ -1,0 +1,11 @@
+{
+  "name": "vision-2",
+  "version": "1.0.0",
+  "description": "It is a social media where writers can write and share their views",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Chirag and Gaurav",
+  "license": "ISC"
+}
