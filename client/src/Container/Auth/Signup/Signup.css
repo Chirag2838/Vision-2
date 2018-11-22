@@ -1,0 +1,13 @@
+.formContent {
+    padding: 40px 40px 40px 40px;
+    align-content: center;
+    text-align: center;
+    border: 2px cadetblue solid;
+    border-radius: 10px;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 30px;   
+}
+
+.mainClass {
+    padding-top: 30px;
+}
