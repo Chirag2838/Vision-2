@@ -3,6 +3,10 @@ const User  = mongoose.model('User');
 const jwt = require('jsonwebtoken');
 
 module.exports.signup = (req, res) => {
+    for (key in req.body) {
+        req.body = JSON.parse(key);
+    }
+    // console.log(req.body);
     if (req.body.pass1 == req.body.pass2) {
         User.findOne({'email': req.body.email}, (err1, user1) => {
             if (!user1) {
@@ -31,7 +35,7 @@ module.exports.signup = (req, res) => {
                                         console.log('err4', err4);
                                     }
                                     else {
-                                        res.json({success: true, message: 'successfully signed in', token: token, data: user});
+                                        res.json({success: true, message: 'successfully signed in', token: token, username: user.username, email:user.email});
                                     }
                                 }) 
                             }

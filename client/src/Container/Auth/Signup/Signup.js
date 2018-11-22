@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import classes from './Signup.css';
+import * as actions from '../../../store/actions';
+import { connect } from 'react-redux';
 
 
 class Signup extends Component {
@@ -9,7 +11,7 @@ class Signup extends Component {
             firstname: {
                 value: '',
                 required: true,
-                valid: false,
+                valid: false
             },
 
             lastname: {
@@ -30,13 +32,13 @@ class Signup extends Component {
                 required: true
             },
 
-            password: {
+            pass1: {
                 value: '',
                 valid: false,
                 required: true
             },
 
-            confirmPassword: {
+            pass2: {
                 value: '',
                 valid: false,
                 required: true
@@ -53,6 +55,8 @@ class Signup extends Component {
             data[formElement] = this.state.signupForm[formElement].value;
         }
         console.log('signuphandler is fine');
+        // console.log('data', data);
+        this.props.onSignup(data);
     }
 
     checkValidity(value, rules) {
@@ -119,10 +123,10 @@ class Signup extends Component {
                                 <input onChange={(event) => this.inputHandler(event, 'username')} className="form-control" placeholder="Username" type="text" />
                             </div>
                             <div className="form-group">
-                                <input onChange={(event) => this.inputHandler(event, 'password')} className="form-control" placeholder="Password" type="password" />
+                                <input onChange={(event) => this.inputHandler(event, 'pass1')} className="form-control" placeholder="Password" type="password" />
                             </div>
                             <div className="form-group">
-                                <input onChange={(event) => this.inputHandler(event, 'confirmPassword')} className="form-control" placeholder="Re-Type Password" type="password" />
+                                <input onChange={(event) => this.inputHandler(event, 'pass2')} className="form-control" placeholder="Re-Type Password" type="password" />
                             </div>
                             <div>
                                 <button className="btn btn-info" disabled={!this.state.formIsValid}>Continue</button>
@@ -135,4 +139,10 @@ class Signup extends Component {
     }
 }
 
-export default Signup;
+const mapDispatchToProps = dispatch => {
+    return {
+        onSignup: (data) => dispatch(actions.signupUser(data))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Signup);
