@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const User  = mongoose.model('User');
+const jwt = require('jsonwebtoken');
 
 module.exports.signup = (req, res) => {
     if (req.body.pass1 == req.body.pass2) {
@@ -16,7 +17,24 @@ module.exports.signup = (req, res) => {
                         });
                         user.save((err3, data) => {
                             console.log('welcome to vision');
-                            res.json({success: true, message: 'Welcome to Vision', data: data});
+                            console.log(data);
+                            if (err3) {
+                                console.log(err3);
+                            }
+                            else {
+                                console.log('token error');
+                                var token = jwt.sign(data.toJSON(), 'secretKey',{
+                                    expiresIn : 86400
+                                });
+                                user.updateOne({'token': token}, (err4, doc) => {
+                                    if(err4) {
+                                        console.log('err4', err4);
+                                    }
+                                    else {
+                                        res.json({success: true, message: 'successfully signed in', token: token, data: user});
+                                    }
+                                }) 
+                            }
                         })
                     }
                     else {
@@ -39,7 +57,18 @@ module.exports.signin = (req, res) => {
     User.findOne({$or:[{'email': req.body.id}, {'username': req.body.id}]}, (err1, user) => {
         if (user) {
             if(user.password == req.body.password) {
-                res.json({success: true, message: 'Successfully Signed in', data: user});
+                var token = jwt.sign(user.toJSON(), 'secretKey',{
+                    expiresIn : 86400
+                });
+
+                user.updateOne({'token': token}, (err, doc) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                    else {
+                        res.json({success: true, message: 'Successfully Signed in', token: token, data: user});
+                    }
+                })
             }
             else {
                 res.json({success: false, message: 'password incorrect'});

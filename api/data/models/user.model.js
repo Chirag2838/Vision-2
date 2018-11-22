@@ -15,6 +15,7 @@ const userSchema = new Schema({
     email: String,
     username: String,
     password: String,
+    token: String,
     posts: [{
         type: Schema.Types.ObjectId,
         ref: 'Post'
