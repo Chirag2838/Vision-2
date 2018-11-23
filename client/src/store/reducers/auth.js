@@ -14,9 +14,17 @@ const signupUserReducer = (state, action) => {
     return updateObject(state, {token: action.token, email: action.email, username: action.username});
 }
 
+const signinUserReducer = (state, action) => {
+    console.log('token State', action.token);
+    console.log('email', action.email);
+    console.log('username', action.username);
+    return updateObject(state, {token: action.token, email: action.email, username: action.username});
+}
+
 const reducer = (state = initialState, action) => {
     switch(action.type) {
         case actionTypes.SIGNUP_SUCCESS: return signupUserReducer(state, action);
+        case actionTypes.SIGNIN_SUCCESS: return signinUserReducer(state, action);
         default: return state;
     }
 }

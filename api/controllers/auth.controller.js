@@ -26,7 +26,6 @@ module.exports.signup = (req, res) => {
                                 console.log(err3);
                             }
                             else {
-                                console.log('token error');
                                 var token = jwt.sign(data.toJSON(), 'secretKey',{
                                     expiresIn : 86400
                                 });
@@ -58,6 +57,11 @@ module.exports.signup = (req, res) => {
 
 
 module.exports.signin = (req, res) => {
+    console.log(req.body);
+    for (key in req.body) {
+        req.body = JSON.parse(key);
+    }
+    console.log(req.body);
     User.findOne({$or:[{'email': req.body.id}, {'username': req.body.id}]}, (err1, user) => {
         if (user) {
             if(user.password == req.body.password) {

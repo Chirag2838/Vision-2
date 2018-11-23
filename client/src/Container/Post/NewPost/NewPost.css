@@ -1,0 +1,31 @@
+.heading {
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    font-size: xx-large;
+    font-family: 'Oswald', sans-serif;
+    color: grey;
+    /* text-decoration: underline; */
+}
+
+.mainClass {
+
+    /* padding: 50px 50px 50px 50px; */
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    border: 2px solid cadetblue;
+    border-radius: 10px;
+}
+
+.boldhead {
+    font-family: 'Oswald', sans-serif;
+    font-weight: bolder;
+    font-size: xx-large;
+}
+
+.containerClass {
+    padding-right: 300px;
+    padding-left: 300px;
+    padding-top: 60px;
+}
