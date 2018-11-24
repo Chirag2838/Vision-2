@@ -18,14 +18,15 @@ module.exports.searchPeople = (req, res) => {
                 res.json({success: false, message: 'No user Found'});
             }
             else {
-                userList = [];
+                console.log(docs);
+                usersList = [];
                 for (let usersObj in docs) {
                     // console.log(docs[usersObj]);
-                    userList.push(docs[usersObj].username);
+                    usersList.push(docs[usersObj].username);
                 }
-                console.log(docs[1].username);
-                console.log(userList);
-                res.json({success: true, message: 'Users found', userList: userList});
+                // console.log(docs[0].username);
+                console.log(usersList);
+                res.json({success: true, message: 'Users found', usersList: usersList});
             }
         })
     }

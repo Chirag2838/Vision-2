@@ -1,6 +1,13 @@
 import * as actionTypes from './actionTypes';
 import axios from 'axios';
 
+export const findUsersSuccess = usersList => {
+    return {
+        type: actionTypes.FIND_USER,
+        usersList: usersList
+    }
+}
+
 export const searchAction = value => {
     console.log('action value', value)
     return {
@@ -21,7 +28,8 @@ export const findUsersAction = value => {
             },
             data: value
         }).then(response => {
-            console.log('response', response);
+            console.log('response', response.data.usersList);
+            dispatch(findUsersSuccess(response.data.usersList));
         }).catch(error => {
             console.log(error);
         })

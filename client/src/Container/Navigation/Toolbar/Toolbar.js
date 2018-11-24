@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import classes from './Toolbar.css';
 import * as actions from '../../../store/actions';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router';
+// import { Redirect } from 'react-router';
+import {NavLink} from 'react-router-dom';
 
 class Toolbar extends Component {
 
@@ -37,11 +38,13 @@ class Toolbar extends Component {
     btnClass1 = ["col-md-1", classes.btnClass];
     btnClass2 = ["col-md-1 offset-md-1", classes.btnClass];
     iconClass = ["fas fa-bars", classes.iconClass];
+    searchButton = ["btn btn-outline-secondary", classes.searchButton];
+
     render () {
 
-        if (this.state.searchClicked) {
-            return <Redirect to='/search' />
-        }
+        // if (this.state.searchClicked) {
+        //     return <Redirect to='/search' />
+        // }
         return (
             <div className="container-fluid">
                 <div className={this.toolbarMain.join(' ')}>
@@ -56,7 +59,7 @@ class Toolbar extends Component {
                         <div className="input-group mb-3">
                             <input onChange={(event) => this.inputHandler(event)} type="text" className="form-control" placeholder="Name/Username" aria-label="Recipient's username" aria-describedby="basic-addon2" />
                             <div className="input-group-append">
-                                <button onClick={this.searchHandler} disabled={!this.state.valid} className="btn btn-outline-secondary" type="button">Search</button>
+                                <button className={this.searchButton.join(' ')} onClick={this.searchHandler} disabled={!this.state.valid} type="button"><NavLink className={classes.navlink} to="/search">Search</NavLink></button>
                             </div>
                         </div>
                     </div>

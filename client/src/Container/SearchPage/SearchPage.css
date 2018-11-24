@@ -1,0 +1,25 @@
+.cards {
+    /* position: fixed; */
+    /* z-index: 500; */
+    background-color: white;
+    width: 550px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px 1px gray;
+    padding: 20px;
+    font-size: 28px;
+    /* font-weight: bolder; */
+    text-align: center;
+    margin-top: 20px;
+    padding-left: 220px;
+    font-family: 'Concert One', cursive;
+    cursor: pointer;
+    /* align-content: center; */
+    /* left: 10%;
+    top: 18%; */
+    /* box-sizing: border-box; */
+    /* transition: all 0.3s ease-out; */
+}
+
+.mainClass {
+    padding-left: 380px;
+}
