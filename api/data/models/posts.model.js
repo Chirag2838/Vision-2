@@ -38,10 +38,6 @@ const postSchema = new mongoose.Schema({
     postDate: {
         type: String
     },
-    postTags: {
-        type: [String],
-        required: true
-    },
     comments: [commentSchema],
     author: {
         type: Schema.Types.ObjectId,

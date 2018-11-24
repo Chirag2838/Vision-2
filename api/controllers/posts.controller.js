@@ -2,13 +2,15 @@ const mongoose = require('mongoose');
 const Post = mongoose.model('Post');
 
 module.exports.postsAddOne = (req, res) => {
+    for (key in req.body) {
+        req.body = JSON.parse(key);
+    }
     console.log('Adding new post');
     Post
         .create({
             postTitle: req.body.title,
             postContent: req.body.content,
             postDate: new Date().toDateString(),
-            postTags: _splitArray(req.body.tags),
             author: req.body.author,
             username: req.body.username
         }, (err, post) => {

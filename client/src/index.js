@@ -6,12 +6,17 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
 import authReducer from './store/reducers/auth.js';
+import postReducer from './store/reducers/post';
+import searchReducer from './store/reducers/search';
+
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 const rootReducer = combineReducers({
-	auth: authReducer
+    auth: authReducer,
+    post: postReducer,
+    search: searchReducer
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));

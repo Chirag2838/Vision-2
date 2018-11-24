@@ -4,21 +4,24 @@ import { updateObject } from '../utility';
 const initialState = {
     token: null,
     username: null,
-    email: null
+    email: null,
+    userId: null
 }
 
 const signupUserReducer = (state, action) => {
     console.log('token State', action.token);
     console.log('email', action.email);
     console.log('username', action.username);
-    return updateObject(state, {token: action.token, email: action.email, username: action.username});
+    console.log('userId', action.userId);
+    return updateObject(state, {token: action.token, email: action.email, username: action.username, userId: action.userId});
 }
 
 const signinUserReducer = (state, action) => {
     console.log('token State', action.token);
     console.log('email', action.email);
     console.log('username', action.username);
-    return updateObject(state, {token: action.token, email: action.email, username: action.username});
+    console.log('userId', action.userId);
+    return updateObject(state, {token: action.token, email: action.email, username: action.username, userId: action.userId});
 }
 
 const reducer = (state = initialState, action) => {

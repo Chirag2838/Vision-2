@@ -5,6 +5,7 @@ const ctrlPosts = require('../controllers/posts.controller');
 const ctrlComments = require('../controllers/comments.controller');
 const ctrlLikes = require('../controllers/likes.controller');
 const follow = require('../controllers/followUser.controller');
+const search = require('../controllers/search.controller');
 
 router
     .route('/signup')
@@ -47,9 +48,9 @@ router
 // 	.route('/findusername')
 // 	.post(username.findUsername);
 
-// router
-// 	.route('/searchpeople')
-// 	.post(search.searchPeople);
+router
+	.route('/searchpeople')
+	.post(search.searchPeople);
 
 router
 	.route('/follow')

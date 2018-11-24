@@ -29,12 +29,13 @@ module.exports.signup = (req, res) => {
                                 var token = jwt.sign(data.toJSON(), 'secretKey',{
                                     expiresIn : 86400
                                 });
-                                user.updateOne({'token': token}, (err4, doc) => {
+                                User.findOneAndUpdate({'email': data.email}, {$set:{'token': token}}, {new: true}, (err4, doc) => {
                                     if(err4) {
                                         console.log('err4', err4);
                                     }
                                     else {
-                                        res.json({success: true, message: 'successfully signed in', token: token, username: user.username, email:user.email});
+                                        console.log(doc);
+                                        res.json({success: true, message: 'successfully signed up', token: token, username: user.username, email:user.email, userId: user._id});
                                     }
                                 }) 
                             }
@@ -65,16 +66,19 @@ module.exports.signin = (req, res) => {
     User.findOne({$or:[{'email': req.body.id}, {'username': req.body.id}]}, (err1, user) => {
         if (user) {
             if(user.password == req.body.password) {
-                var token = jwt.sign(user.toJSON(), 'secretKey',{
+                const token = jwt.sign(user.toJSON(), 'secretKey',{
                     expiresIn : 86400
                 });
 
-                user.updateOne({'token': token}, (err, doc) => {
+                // console.log(token);
+
+                User.findOneAndUpdate({'email': user.email}, {$set:{'token': token}}, {new: true}, (err, doc) => {
                     if (err) {
                         console.log(err);
                     }
                     else {
-                        res.json({success: true, message: 'Successfully Signed in', token: token, data: user});
+                        console.log(doc);
+                        res.json({success: true, message: 'Successfully Signed in', token: token, email: user.email, username: user.username, userId: user._id});
                     }
                 })
             }

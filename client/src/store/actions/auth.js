@@ -1,21 +1,23 @@
 import * as actionTypes from './actionTypes';
 import axios from 'axios';
 
-export const signupSuccess = (token, email, username) => {
+export const signupSuccess = (token, email, username, userId) => {
     return {
         type: actionTypes.SIGNUP_SUCCESS,
         token: token,
         email: email,
-        username: username
+        username: username,
+        userId: userId
     }
 }
 
-export const signinSuccess = (token, email, username) => {
+export const signinSuccess = (token, email, username, userId) => {
     return {
         type: actionTypes.SIGNIN_SUCCESS,
         token: token,
         email: email,
-        username: username
+        username: username,
+        userId: userId
     }
 }
 
@@ -31,8 +33,8 @@ export const signupUser = data => {
             },
             data: data
         }).then(response => {
-                console.log('response', response.data);
-                dispatch(signupSuccess(response.data.token, response.data.email, response.data.username));
+                console.log('response', response.email);
+                dispatch(signupSuccess(response.data.token, response.data.email, response.data.username, response.data.userId));
             })
             .catch(error => {
                 console.log(error);
@@ -51,8 +53,8 @@ export const signinUser = data => {
             },
             data: data
         }).then(response => {
-            console.log('response', response.data);
-            dispatch(signinSuccess(response.data.token, response.data.email, response.data.username));
+            console.log('response', response.data.token);
+            dispatch(signinSuccess(response.data.token, response.data.email, response.data.username, response.data.userId));
         })
         .catch(error => {
             console.log(error);

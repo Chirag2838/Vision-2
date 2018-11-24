@@ -6,6 +6,7 @@ import Auth from './Container/Auth/Auth';
 import Signup from './Container/Auth/Signup/Signup';
 import Signin from './Container/Auth/Singnin/Signin';
 import NewPost from './Container/Post/NewPost/NewPost';
+import SearchPage from './Container/SearchPage/SearchPage';
 
 class App extends Component {
 
@@ -14,6 +15,7 @@ class App extends Component {
     let routes = (
 
       <Switch>
+        <Route path='/search' component={SearchPage} />
         <Route path='/NewPost' component={NewPost} />
         <Route path='/signin' component={Signin} />
         <Route path='/signup' component={Signup} />

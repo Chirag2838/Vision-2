@@ -1,0 +1,32 @@
+.toolbarMain {
+    padding: 3px 3px 3px 3px;
+    background-color: whitesmoke;
+}
+
+.visionClass {
+    font-family: 'Righteous', cursive;
+    font-weight: bolder;
+    font-size: xx-large;
+    padding-top: 13px;
+}
+
+.searchClass {
+    font-family: 'Righteous', cursive;
+    padding-top: 18px;
+}
+
+.btnClass {
+    padding-top: 18px;
+    /* align-content: center; */
+}
+
+.iconClass {
+    font-size: 2em;
+    color: grey;
+    padding-top: 18px;
+}
+
+.iconClass:hover{
+    color: black;
+    cursor: pointer;
+}

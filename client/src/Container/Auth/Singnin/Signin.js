@@ -29,6 +29,7 @@ class Signin extends Component {
         }
         console.log('signin function', data);
         this.props.onSignin(data);
+        this.props.history.push('/NewPost');
     }
 
     checkValidity(value, rules) {
