@@ -8,6 +8,13 @@ export const newPostDone = postId => {
     }
 }
 
+export const allPosts = posts => {
+    return {
+        type: actionTypes.POST_ALL_SUCCESS,
+        posts: posts
+    }
+}
+
 export const newPostAction = data => {
     return dispatch => {
         axios({
@@ -22,5 +29,17 @@ export const newPostAction = data => {
             console.log(response.data);
             dispatch(newPostDone(response.data._id));
         })
+    }
+}
+
+export const getAllPostsAction = () => {
+    return dispatch => {
+        axios.get('api/posts')
+            .then(response => {
+                console.log(response.data.posts);
+                dispatch(allPosts(response.data.posts));
+            }).catch(error => {
+                console.log(error);
+            })
     }
 }

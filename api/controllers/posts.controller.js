@@ -31,53 +31,14 @@ module.exports.postsAddOne = (req, res) => {
 
 module.exports.postsGetAll = (req, res) => {
     console.log('GET the posts');
-
-    var offset = 0;
-    var count = 5;
-    var maxCount = 50;
-
-    if (req.query && req.query.offset) {
-        offset = parseInt(req.query.offset, 10);
-    }
-
-    if (req.query && req.query.count) {
-        count = parseInt(req.query.count, 10);
-    }
-
-    if (isNaN(offset) || isNaN(count)) {
-        res
-        .status(400)
-        .json({
-            "message" : "If supplied in querystring, count and offset must both be numbers"
-        });
-        return;
-    }
-
-    if (count > maxCount) {
-        res
-        .status(400)
-        .json({
-            "message" : "Count limit of " + maxCount + " exceeded"
-        });
-        return;
-    }
-
-    Post
-        .find()
-        .skip(offset)
-        .limit(count)
-        .exec(function(err, posts) {
+    Post.find({}, (err, posts) => {
         if (err) {
-            console.log("Error finding posts");
-            res
-            .status(500)
-            .json(err);
-        } else {
-            console.log("Found posts", posts.length);
-            res
-            .json(posts);
+            console.log(err);
         }
-        });
+        else {
+            res.json({success: true, message: 'Here we have the posts', posts: posts});
+        }
+    })
 };
 
 module.exports.postsGetOne = (req, res) => {

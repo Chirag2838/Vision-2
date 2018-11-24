@@ -1,6 +1,7 @@
 .toolbarMain {
     padding: 3px 3px 3px 3px;
     background-color: whitesmoke;
+    /* position: fixed; */
 }
 
 .visionClass {
@@ -44,4 +45,11 @@
 .searchButton {
     background-color: silver;
     color: white;
+}
+
+.superMainClass {
+    z-index: 200;
+    top: 0;
+    left: 0;
+    position: fixed;
 }

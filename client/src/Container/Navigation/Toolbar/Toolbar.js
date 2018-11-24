@@ -39,6 +39,7 @@ class Toolbar extends Component {
     btnClass2 = ["col-md-1 offset-md-1", classes.btnClass];
     iconClass = ["fas fa-bars", classes.iconClass];
     searchButton = ["btn btn-outline-secondary", classes.searchButton];
+    superMainClass = ["container-fluid", classes.superMainClass];
 
     render () {
 
@@ -46,7 +47,7 @@ class Toolbar extends Component {
         //     return <Redirect to='/search' />
         // }
         return (
-            <div className="container-fluid">
+            <div className={this.superMainClass.join(' ')}>
                 <div className={this.toolbarMain.join(' ')}>
                     <div className="col-md-2">
                         <span onClick={this.props.toggle} className={this.iconClass.join(' ')}>
@@ -59,7 +60,7 @@ class Toolbar extends Component {
                         <div className="input-group mb-3">
                             <input onChange={(event) => this.inputHandler(event)} type="text" className="form-control" placeholder="Name/Username" aria-label="Recipient's username" aria-describedby="basic-addon2" />
                             <div className="input-group-append">
-                                <button className={this.searchButton.join(' ')} onClick={this.searchHandler} disabled={!this.state.valid} type="button"><NavLink className={classes.navlink} to="/search">Search</NavLink></button>
+                                <button className={this.searchButton.join(' ')} onClick={this.searchHandler} disabled={!this.state.valid} type="button"><NavLink disabled={!this.state.valid} className={classes.navlink} to="/search">Search</NavLink></button>
                             </div>
                         </div>
                     </div>
