@@ -36,7 +36,9 @@ module.exports.postsGetAll = (req, res) => {
             console.log(err);
         }
         else {
-            res.json({success: true, message: 'Here we have the posts', posts: posts});
+
+            const postsSorted = posts.reverse();
+            res.json({success: true, message: 'Here we have the posts', posts: postsSorted});
         }
     })
 };

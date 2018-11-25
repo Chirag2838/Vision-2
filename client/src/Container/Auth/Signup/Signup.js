@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classes from './Signup.css';
 import * as actions from '../../../store/actions';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 
 class Signup extends Component {
@@ -102,6 +103,15 @@ class Signup extends Component {
     mainClass = ['container-fluid', classes.mainClass];
 
     render () {
+
+        let message = null;
+        if (this.props.token !== null) {
+            return <Redirect to='/homepage' />
+        }
+        else {
+            message = <div className={classes.message}>{this.props.message}</div>
+        }
+
         return (
             <div className={this.mainClass.join(' ')}>
                 <div className="row">
@@ -110,6 +120,7 @@ class Signup extends Component {
                             <div className="form-group">
                                 <p>Hey! Signup to share your writeups</p>
                             </div>
+                            {message}
                             <div className="form-group">
                                 <input onChange={(event) => this.inputHandler(event, 'firstname')} className="form-control" placeholder="Firstname" type="text" />
                             </div>
@@ -139,10 +150,17 @@ class Signup extends Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        token: state.auth.token,
+        message: state.auth.message
+    }
+}
+
 const mapDispatchToProps = dispatch => {
     return {
         onSignup: (data) => dispatch(actions.signupUser(data))
     }
 }
 
-export default connect(null, mapDispatchToProps)(Signup);
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

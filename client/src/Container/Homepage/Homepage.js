@@ -11,6 +11,7 @@ class Homepage extends Component {
     }
 
     componentWillMount (prevProps) {
+        console.log(prevProps)
         if (prevProps !== this.props.post) {
             this.props.getAllPosts();
         }

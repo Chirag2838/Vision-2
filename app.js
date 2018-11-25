@@ -1,6 +1,7 @@
 require('./api/data/db');
 require('./api/data/models/user.model');
 require('./api/data/models/posts.model');
+require('./api/data/models/blogPosts.model');
 
 const express = require('express');
 const path = require('path');

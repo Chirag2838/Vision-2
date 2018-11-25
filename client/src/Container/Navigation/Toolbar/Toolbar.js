@@ -13,6 +13,10 @@ class Toolbar extends Component {
         searchClicked: false
     }
 
+    logoutNow = () => {
+        this.props.onLogout();
+    }
+
     searchHandler = () => {
         const sendValue = this.state.value;
         this.props.searchValue(sendValue); 
@@ -68,7 +72,7 @@ class Toolbar extends Component {
                         <button className="btn btn-outline-info">Create Post</button>
                     </div>
                     <div className={this.btnClass2.join(' ')}>
-                        <button className="btn btn-outline-secondary">Logout</button>
+                        <button className="btn btn-outline-secondary" onClick={this.logoutNow}>Logout</button>
                     </div>
                 </div>
             </div>
@@ -78,6 +82,7 @@ class Toolbar extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
+        onLogout: () => dispatch(actions.logout()),
         searchValue: (value) => dispatch(actions.searchAction(value))
     }
 }

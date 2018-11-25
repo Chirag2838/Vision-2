@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classes from './Signin.css';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions';
+import { Redirect } from 'react-router-dom';
 
 class Signin extends Component {
 
@@ -29,7 +30,6 @@ class Signin extends Component {
         }
         console.log('signin function', data);
         this.props.onSignin(data);
-        this.props.history.push('/NewPost');
     }
 
     checkValidity(value, rules) {
@@ -75,6 +75,13 @@ class Signin extends Component {
     formContent = ['col-md-4 offset-md-4', classes.formContent];
 
     render () {
+        let message = null;
+        if (this.props.token !== null) {
+            return <Redirect to='/homepage' />
+        }
+        else {
+            message = <div className={classes.message}>{this.props.message}</div>
+        }
         return (
             <div className={this.mainClass.join(' ')}>
                 <div className="row">
@@ -83,6 +90,7 @@ class Signin extends Component {
                             <div>
                                 <p>Sigin to continue</p>
                             </div>
+                            {message}
                             <div className="form-group">
                                 <input onChange={(event) => this.inputHandler(event, 'id')} className="form-control" placeholder="Username or Email" type="text" />
                             </div>
@@ -100,10 +108,17 @@ class Signin extends Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        token: state.auth.token,
+        message: state.auth.message
+    }
+}
+
 const mapDispatchToProps = dispatch => {
     return {
         onSignin: (data) => dispatch(actions.signinUser(data))
     }
 }
 
-export default connect(null, mapDispatchToProps)(Signin);
+export default connect(mapStateToProps, mapDispatchToProps)(Signin);

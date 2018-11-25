@@ -6,7 +6,7 @@ module.exports.signup = (req, res) => {
     for (key in req.body) {
         req.body = JSON.parse(key);
     }
-    // console.log(req.body);
+    console.log(req.body);
     if (req.body.pass1 == req.body.pass2) {
         User.findOne({'email': req.body.email}, (err1, user1) => {
             if (!user1) {
@@ -42,17 +42,17 @@ module.exports.signup = (req, res) => {
                         })
                     }
                     else {
-                        res.json({success: false, message: 'Username already exists'});
+                        res.json({success: false, message: 'Username already exists', token: null});
                     }
                 })
             }
             else {
-                res.json({success: false, message: 'Email already exists'});
+                res.json({success: false, message: 'Email already exists', token: null});
             }
         })
     }
     else {
-        res.json({success: false, message: 'password did not match'});
+        res.json({success: false, message: 'password did not match', token: null});
     }
 }
 
@@ -77,17 +77,17 @@ module.exports.signin = (req, res) => {
                         console.log(err);
                     }
                     else {
-                        console.log(doc);
+                        // console.log(doc);
                         res.json({success: true, message: 'Successfully Signed in', token: token, email: user.email, username: user.username, userId: user._id});
                     }
                 })
             }
             else {
-                res.json({success: false, message: 'password incorrect'});
+                res.json({success: false, message: 'password incorrect', token: null});
             }
         }
         else {
-            res.json({success: false, message: 'User not found'});
+            res.json({success: false, message: 'User not found', token: null});
         }
     })
 }

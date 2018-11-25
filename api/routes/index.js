@@ -6,6 +6,7 @@ const ctrlComments = require('../controllers/comments.controller');
 const ctrlLikes = require('../controllers/likes.controller');
 const follow = require('../controllers/followUser.controller');
 const search = require('../controllers/search.controller');
+const blog = require('../controllers/blog.controller');
 
 router
     .route('/signup')
@@ -55,6 +56,19 @@ router
 router
 	.route('/follow')
 	.post(follow.followUser);
+
+router
+	.route('/blog/category')
+	.post(blog.addCategory);
+
+router
+	.route('/blog/post')
+	.post(blog.blogPostsAddOne)
+	.get(blog.blogPostsGetAll);
+
+router
+	.route('/blog/postByUsername')
+	.post(blog.blogPostByUsername);
 
 //test routes
 // router

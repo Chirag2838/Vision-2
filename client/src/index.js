@@ -8,6 +8,7 @@ import thunk from 'redux-thunk';
 import authReducer from './store/reducers/auth.js';
 import postReducer from './store/reducers/post';
 import searchReducer from './store/reducers/search';
+import blogReducer from './store/reducers/blog';
 
 import './index.css';
 import App from './App';
@@ -16,7 +17,8 @@ import * as serviceWorker from './serviceWorker';
 const rootReducer = combineReducers({
     auth: authReducer,
     post: postReducer,
-    search: searchReducer
+    search: searchReducer,
+    blog: blogReducer
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));

@@ -23,7 +23,10 @@ const SideDrawer = props => {
                 <button className="btn btn-outline-secondary">See Blogs</button>
             </div>
             <div className={buttonClass.join(' ')}>
-                <button className="btn btn-outline-secondary">Followers</button>
+                <button className="btn btn-outline-secondary">Create Blog</button>
+            </div>
+            <div className={buttonClass.join(' ')}>
+                <button className="btn btn-outline-secondary">Following</button>
             </div>
             <div className={buttonClass.join(' ')}>
                 <button className="btn btn-outline-secondary">Following</button>

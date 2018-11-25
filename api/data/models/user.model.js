@@ -16,9 +16,14 @@ const userSchema = new Schema({
     username: String,
     password: String,
     token: String,
+    blogCategory: String,
     posts: [{
         type: Schema.Types.ObjectId,
         ref: 'Post'
+    }],
+    blogPosts: [{
+        type: Schema.Types.ObjectId,
+        ref:'Blog'
     }],
     following: [followingSchema],
     followers: [followersSchema]

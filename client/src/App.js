@@ -8,14 +8,24 @@ import Signin from './Container/Auth/Singnin/Signin';
 import NewPost from './Container/Post/NewPost/NewPost';
 import SearchPage from './Container/SearchPage/SearchPage';
 import Homepage from './Container/Homepage/Homepage';
+import BlogCategory from './Container/Blog/BlogCategory/BlogCategory';
+import MyBlogProfile from './Container/Blog/MyBlogProfile/MyBlogProfile';
+import * as actions from './store/actions';
+import { connect } from 'react-redux';
 
 class App extends Component {
+
+  componentDidMount () {
+    this.props.checkToken();
+  }
 
   render() {
 
     let routes = (
 
       <Switch>
+        <Route path='/MyBlogProfile' component={MyBlogProfile} />
+        <Route path='/choose' component={BlogCategory} />
         <Route path='/homepage' component={Homepage} />
         <Route path='/search' component={SearchPage} />
         <Route path='/NewPost' component={NewPost} />
@@ -35,4 +45,10 @@ class App extends Component {
   }
 }
 
-export default withRouter(App);
+const mapDispatchToProps = dispatch => {
+  return {
+    checkToken: () => dispatch(actions.checkAuthState())
+  }
+}
+
+export default withRouter(connect(null, mapDispatchToProps)(App));

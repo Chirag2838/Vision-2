@@ -11,3 +11,8 @@
 .mainClass {
     padding-top: 30px;
 }
+
+.message {
+    font-size: 15px;
+    color:red;
+}

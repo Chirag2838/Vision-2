@@ -5,7 +5,12 @@ const initialState = {
     token: null,
     username: null,
     email: null,
-    userId: null
+    userId: null,
+    message: ''
+}
+
+const logoutReducer = (state, action) => {
+    return updateObject(state, {token: null, email: null, userId: null, username: null});
 }
 
 const signupUserReducer = (state, action) => {
@@ -13,7 +18,7 @@ const signupUserReducer = (state, action) => {
     console.log('email', action.email);
     console.log('username', action.username);
     console.log('userId', action.userId);
-    return updateObject(state, {token: action.token, email: action.email, username: action.username, userId: action.userId});
+    return updateObject(state, {token: action.token, email: action.email, username: action.username, userId: action.userId, message: action.message});
 }
 
 const signinUserReducer = (state, action) => {
@@ -21,13 +26,14 @@ const signinUserReducer = (state, action) => {
     console.log('email', action.email);
     console.log('username', action.username);
     console.log('userId', action.userId);
-    return updateObject(state, {token: action.token, email: action.email, username: action.username, userId: action.userId});
+    return updateObject(state, {token: action.token, email: action.email, username: action.username, userId: action.userId, message: action.message});
 }
 
 const reducer = (state = initialState, action) => {
     switch(action.type) {
         case actionTypes.SIGNUP_SUCCESS: return signupUserReducer(state, action);
         case actionTypes.SIGNIN_SUCCESS: return signinUserReducer(state, action);
+        case actionTypes.AUTH_LOGOUT: return logoutReducer(state, action);
         default: return state;
     }
 }
