@@ -1,16 +1,30 @@
 .pClass {
     font-family: 'Ranga', cursive;
-    font-size: 20px;
+    font-size: 15px;
 }
 
 .titleClass {
     font-family: 'Anton', sans-serif;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .mainHead {
+    /* text-align: center; */
+    /* align-content: center; */
+}
+
+.belowNav{
+    top: 78px;
+    /* bottom: 30px; */
+    position: fixed;
+    width: 98%;
+    z-index: 150;
+    background-color: whitesmoke;
+    color: grey;
+    border: 2px solid cadetblue;
+    padding-top: 7px;
+    padding-bottom: 7px;
     text-align: center;
-    align-content: center;
 }
 
 .postGrid {
@@ -29,4 +43,19 @@
 .postCntnt {
     font-family: 'Cookie', cursive;
     font-size: 25px;
+}
+
+.blogClasses {
+    padding-top: 130px;
+    align-content: center;
+}
+
+.usernameText {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 20px;
+}
+
+.dateStyle {
+    font-family: 'Patrick Hand', cursive;
+    color: gray;
 }

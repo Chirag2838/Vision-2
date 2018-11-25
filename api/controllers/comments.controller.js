@@ -2,9 +2,12 @@ const mongoose = require('mongoose');
 const Post = mongoose.model('Post');
 
 const _addComments = (req, res, post) => {
+  for (key in req.body) {
+    req.body = JSON.parse(key);
+  }
+  console.log(req.body);
     post.comments.push({
-      name : req.body.name,
-      createdBy : req.body.createdBy,
+      username : req.body.username,
       comment : req.body.comment
     });
   

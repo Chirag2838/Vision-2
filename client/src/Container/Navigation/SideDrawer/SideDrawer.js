@@ -1,17 +1,9 @@
 import React, { Component } from 'react';
 import classes from './SideDrawer.css';
-import { Redirect } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class SideDrawer extends Component {
-
-    state = {
-        createBlog: false
-    }
-
-    createBlogHandler = () => {
-        this.setState({createBlog: true});
-    }
-
     
     titleClass = ["row", classes.titleClass];
     buttonClass = ["row", classes.buttonClass];
@@ -25,10 +17,6 @@ class SideDrawer extends Component {
             attachedClasses = ["container-fluid", classes.SideDrawer, classes.Open];
         }
 
-        if (this.state.createBlog) {
-            return <Redirect to='/choose' />
-        }
-
         return (
             <div className={attachedClasses.join(' ')} onClick={this.props.closed}>
                 <div className={this.titleClass.join(' ')}>
@@ -40,8 +28,8 @@ class SideDrawer extends Component {
                 <div className={this.buttonClass.join(' ')}>
                     <button className="btn btn-outline-secondary">See Blogs</button>
                 </div>
-                <div onClick={this.createBlogHandler} className={this.buttonClass.join(' ')}>
-                    <button className="btn btn-outline-secondary">Create Blog</button>
+                <div className={this.buttonClass.join(' ')}>
+                    <NavLink to='/choose'>Create Blog</NavLink>
                 </div>
                 <div className={this.buttonClass.join(' ')}>
                     <button className="btn btn-outline-secondary">Following</button>
@@ -54,4 +42,10 @@ class SideDrawer extends Component {
     }
 }
 
-export default SideDrawer;
+const mapStateToProps = state => {
+    return {
+        blogCategory: state.auth.blogCategory
+    }
+}
+
+export default connect(mapStateToProps)(SideDrawer);

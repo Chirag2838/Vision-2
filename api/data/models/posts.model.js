@@ -7,23 +7,14 @@ const likeSchema =  new Schema({
 });
 
 const commentSchema = new Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    createdBy: {
+    username: {
         type: String,
         required: true
     },
     comment : {
         type : String,
         required : true
-      },
-    createdOn : {
-        type : String,
-        "default" : new Date().toDateString()
-      },
-    likes: [likeSchema]
+      }
 });
 
 const postSchema = new mongoose.Schema({

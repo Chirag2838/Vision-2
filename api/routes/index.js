@@ -7,6 +7,7 @@ const ctrlLikes = require('../controllers/likes.controller');
 const follow = require('../controllers/followUser.controller');
 const search = require('../controllers/search.controller');
 const blog = require('../controllers/blog.controller');
+const userDetail = require('../controllers/fullUser.controller');
 
 router
     .route('/signup')
@@ -69,6 +70,10 @@ router
 router
 	.route('/blog/postByUsername')
 	.post(blog.blogPostByUsername);
+
+router
+	.route('/:userId')
+	.get(userDetail.fullUser);
 
 //test routes
 // router

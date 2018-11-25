@@ -30,6 +30,7 @@ export const logout = () => {
     localStorage.removeItem('userId');
     localStorage.removeItem('email');
     localStorage.removeItem('username');
+    localStorage.removeItem('blogCategory');
 	return {
 		type: actionTypes.AUTH_LOGOUT
 	}
@@ -111,7 +112,8 @@ export const checkAuthState = () => {
             const userId = localStorage.getItem('userId');
             const email = localStorage.getItem('email');
             const blogCategory = localStorage.getItem('blogCategory');
-            dispatch(signinSuccess(token, email, username, userId, blogCategory));
+            console.log('checking at reload', blogCategory);
+            dispatch(signinSuccess(token, email, username, userId, null, blogCategory));
         }
     }
 }

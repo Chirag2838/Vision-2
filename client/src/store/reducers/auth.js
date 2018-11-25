@@ -11,7 +11,7 @@ const initialState = {
 }
 
 const logoutReducer = (state, action) => {
-    return updateObject(state, {token: null, email: null, userId: null, username: null});
+    return updateObject(state, {token: null, email: null, userId: null, username: null, blogCategory: null});
 }
 
 const signupUserReducer = (state, action) => {
@@ -19,6 +19,7 @@ const signupUserReducer = (state, action) => {
     console.log('email', action.email);
     console.log('username', action.username);
     console.log('userId', action.userId);
+    
     return updateObject(state, {
         token: action.token, 
         email: action.email, 
@@ -34,6 +35,7 @@ const signinUserReducer = (state, action) => {
     console.log('email', action.email);
     console.log('username', action.username);
     console.log('userId', action.userId);
+    console.log('rechecking', action.blogCategory);
     return updateObject(state, {
         token: action.token, 
         email: action.email, 
@@ -44,11 +46,17 @@ const signinUserReducer = (state, action) => {
     });
 }
 
+const addCatReducer = (state, action) => {
+    console.log('cat', action.blogCategory);
+    return updateObject(state, {blogCategory: action.blogCategory});
+}
+
 const reducer = (state = initialState, action) => {
     switch(action.type) {
         case actionTypes.SIGNUP_SUCCESS: return signupUserReducer(state, action);
         case actionTypes.SIGNIN_SUCCESS: return signinUserReducer(state, action);
         case actionTypes.AUTH_LOGOUT: return logoutReducer(state, action);
+        case actionTypes.ADD_CATEGORY: return addCatReducer(state, action);
         default: return state;
     }
 }

@@ -71,6 +71,7 @@ module.exports.blogPostByUsername = (req, res) => {
         }
 
         else if (blogPosts.length == 0) {
+            console.log(blogPosts);
             res.json({success: false, message: 'No posts found'});
         }
 

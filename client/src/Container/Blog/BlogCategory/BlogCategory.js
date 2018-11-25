@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 import classes from './BlogCategory.css';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import * as actions from '../../../store/actions';
 
 class blogCategory extends Component {
 
+    state = {
+        clicked: false
+    }
+
     clickCategory = (clickedElement) => {
         console.log(clickedElement);
         this.props.addCategory(this.props.username, clickedElement);
+        this.props.history.push('/MyBlogProfile');
     }
 
     headerClass = ["col-md-12", classes.heading];
@@ -17,6 +23,14 @@ class blogCategory extends Component {
     rowClass = ["row", classes.rowclass];
 
     render () {
+
+        if (this.props.blogCategory !== undefined) {
+            console.log(this.props.blogCategory);
+            return <Redirect to='/MyBlogProfile' />
+        }
+
+        console.log(this.props.blogCategory);
+
         return (
             <div className={this.mainClass.join(' ')}>
                 <div className="row">
@@ -66,7 +80,8 @@ class blogCategory extends Component {
 
 const mapStateToProps = state => {
     return {
-        username: state.auth.username
+        username: state.auth.username,
+        blogCategory: state.auth.blogCategory
     }
 }
 

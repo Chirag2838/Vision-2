@@ -58,7 +58,7 @@ class Toolbar extends Component {
                         </span>
                     </div>
                     <div className={this.visionClass.join(' ')}>
-                        Vision
+                        <NavLink className={classes.visionClass} to='/homepage'>Vision</NavLink>
                     </div>
                     <div className={this.searchClass.join(' ')}>
                         <div className="input-group mb-3">
@@ -69,7 +69,7 @@ class Toolbar extends Component {
                         </div>
                     </div>
                     <div className={this.btnClass1.join(' ')}>
-                        <button className="btn btn-outline-info">Create Post</button>
+                        <button className="btn btn-outline-info"><NavLink className={classes.newPost} to='/NewPost'>Create Post</NavLink></button>
                     </div>
                     <div className={this.btnClass2.join(' ')}>
                         <button className="btn btn-outline-secondary" onClick={this.logoutNow}>Logout</button>

@@ -1,0 +1,25 @@
+.mainDiv {
+    padding-top: 100px;
+    padding-left: 360px;
+}
+
+.posttitle {
+    font-family: 'Acme', sans-serif;
+    font-size: xx-large;
+}
+
+.postCntnt {
+    font-family: 'Cookie', cursive;
+    font-size: 25px;
+}
+
+.usernameStyle {
+    font-family: 'Acme', sans-serif;
+    color: cadetblue;
+    font-weight: bold;
+}
+
+.commentStyle {
+    font-family: 'Cookie', cursive;
+    font-size: 23px;
+}

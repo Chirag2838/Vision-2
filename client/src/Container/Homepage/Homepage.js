@@ -3,6 +3,7 @@ import classes from './Homepage.css';
 import * as actions from '../../store/actions';
 import { connect } from 'react-redux';
 import Spinner from '../../Component/UI/Spinner/Spinner';
+import { Redirect } from 'react-router-dom';
 
 class Homepage extends Component {
 
@@ -10,11 +11,16 @@ class Homepage extends Component {
         this.props.getAllPosts();
     }
 
-    componentWillMount (prevProps) {
-        console.log(prevProps)
-        if (prevProps !== this.props.post) {
-            this.props.getAllPosts();
-        }
+    // componentWillMount (prevProps) {
+    //     console.log(prevProps.post)
+    //     if (prevProps.post !== this.props.post) {
+    //         this.props.getAllPosts();
+    //     }
+    // }
+
+    commentClick = (postId) => {
+        console.log(postId);
+        this.props.fetchPost(postId);
     }
 
     postGrid = ["row", classes.postGrid];
@@ -25,6 +31,16 @@ class Homepage extends Component {
 
         if(this.props.posts == null) {
             return <Spinner />
+        }
+
+        console.log('homepage', this.props.postOneBol)
+
+        // if(this.props.postOneBol == undefined) {
+        //     return <Spinner />
+        // }
+
+        if(this.props.postOneBol){
+            return <Redirect to='/currentPost' />
         }
 
         let postMap = (
@@ -46,7 +62,7 @@ class Homepage extends Component {
                                 <button type="button" className="btn btn-outline-info btn-sm">
                                     Like
                                 </button>
-                                <button type="button" class="btn btn-outline-info btn-sm" style={{marginLeft: "2em"}} >
+                                <button onClick={() => this.commentClick(allPost._id)} type="button" class="btn btn-outline-info btn-sm" style={{marginLeft: "2em"}} >
                                     Comment
                                 </button>
                             </div>
@@ -66,13 +82,15 @@ class Homepage extends Component {
 
 const mapStateToProps = state => {
     return {
-        posts: state.post.posts
+        posts: state.post.posts,
+        postOneBol: state.post.postOneBol
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        getAllPosts: () => dispatch(actions.getAllPostsAction())
+        getAllPosts: () => dispatch(actions.getAllPostsAction()),
+        fetchPost: (postId) => dispatch(actions.fetchPostAction(postId))
     }
 }
 

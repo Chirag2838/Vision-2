@@ -6,10 +6,10 @@ import Spinner from '../../../Component/UI/Spinner/Spinner';
 
 class MyBlogProfile extends Component {
 
-    // componentDidMount () {
-    //     console.log('calling function')
-        // this.props.getAllBlogPost(this.props.username);
-    // }
+    componentDidMount () {
+        console.log('calling function')
+        this.props.getAllBlogPost(localStorage.getItem('username'));
+    }
 
     // componentDidUpdate (prevProps) {
     //     console.log(prevProps);
@@ -42,30 +42,28 @@ class MyBlogProfile extends Component {
 
         return (
             <div className={this.mainHead.join(' ')}>
-                <div>
-                    <div class="card text-white bg-dark mb-3" style={{maxWidth: "100%", textAlign: "center"}}>
-                        <div class="card-body">
-                            <h5 class={this.titleClass.join(' ')}>TECHNOLOGY</h5>
-                            <p className={this.pClass.join(' ')}>A Blog created by Chirag123</p>
-                        </div>
+                <div className={classes.belowNav}>
+                    <div>
+                        <h5 class={this.titleClass.join(' ')}>TECHNOLOGY</h5>
+                        <p className={this.pClass.join(' ')}>A Blog created by Chirag123</p>
                     </div>
                 </div>
                 <div>
-                    <div>
+                    <div className={classes.blogClasses}>
                         {this.props.blogPosts.map(allPost => {
                             return (
-                                <div key={allPost._id} class="card bg-light mb-3" style={{maxWidth: "50rem", marginLeft: "18em", marginTop: "6em"}}>
+                                <div key={allPost._id} class="card bg-light mb-3" style={{maxWidth: "50rem", marginLeft: "18em", marginTop: "4em"}}>
                                     <div className="card-header">
                                         <div className={classes.usernameText}>
                                             {allPost.username}
                                         </div>
                                         <div className={classes.dateStyle}>
-                                            {allPost.postDate}
+                                            {allPost.blogPostDate}
                                         </div>
                                     </div>
                                     <div className="card-body">
-                                        <h5 className={this.posttitle.join(' ')}>{allPost.postTitle}</h5>
-                                        <p className={this.postCntnt.join(' ')}>{allPost.postContent}</p>
+                                        <h5 className={this.posttitle.join(' ')}>{allPost.blogPostTitle}</h5>
+                                        <p className={this.postCntnt.join(' ')}>{allPost.blogPostContent}</p>
                                         <button type="button" className="btn btn-outline-info btn-sm">
                                             Like
                                         </button>
