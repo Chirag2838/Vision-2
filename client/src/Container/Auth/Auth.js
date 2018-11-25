@@ -4,6 +4,14 @@ import classes from './Auth.css';
 
 class Auth extends Component {
 
+    signInHandler = () => {
+        this.props.history.push('/signin');
+    }
+
+    signUpHandler = () => {
+        this.props.history.push('/signup');
+    }
+
     mainHeading = ["row", classes.mainHeading];
     details = ["row", classes.details];
     btns = ["row", classes.btns];
@@ -21,12 +29,12 @@ class Auth extends Component {
                     </div>
                     <div className={this.btns.join(' ')}>
                         <div className="col-md-3 offset-md-4">
-                            <button className="btn btn-success btn-lg">
+                            <button onClick={this.signInHandler} className="btn btn-success btn-lg">
                                 SIGN IN
                             </button>
                         </div>
                         <div className="col-md-3">
-                            <button className="btn btn-danger btn-lg">
+                            <button onClick={this.signUpHandler} className="btn btn-danger btn-lg">
                                 SIGN UP
                             </button>
                         </div>

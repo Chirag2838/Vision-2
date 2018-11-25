@@ -1,25 +1,27 @@
 import * as actionTypes from './actionTypes';
 import axios from 'axios';
 
-export const signupSuccess = (token, email, username, userId, message) => {
+export const signupSuccess = (token, email, username, userId, message, blogCategory) => {
     return {
         type: actionTypes.SIGNUP_SUCCESS,
         token: token,
         email: email,
         username: username,
         userId: userId,
-        message: message
+        message: message,
+        blogCategory: blogCategory
     }
 }
 
-export const signinSuccess = (token, email, username, userId, message) => {
+export const signinSuccess = (token, email, username, userId, message, blogCategory) => {
     return {
         type: actionTypes.SIGNIN_SUCCESS,
         token: token,
         email: email,
         username: username,
         userId: userId,
-        message: message
+        message: message,
+        blogCategory: blogCategory
     }
 }
 
@@ -46,6 +48,7 @@ export const signupUser = data => {
             data: data
         }).then(response => {
                 console.log('response', response);
+                localStorage.setItem('blogCategory', response.data.blogCategory);
                 localStorage.setItem('token', response.data.token);
                 localStorage.setItem('username', response.data.username);
                 localStorage.setItem('userId', response.data.userId);
@@ -55,7 +58,8 @@ export const signupUser = data => {
                     response.data.email, 
                     response.data.username, 
                     response.data.userId,
-                    response.data.message
+                    response.data.message,
+                    response.data.blogCategory
                 ));
             })
             .catch(error => {
@@ -75,7 +79,8 @@ export const signinUser = data => {
             },
             data: data
         }).then(response => {
-            console.log('response', response.data.token);
+            console.log('response', response.data.blogCategory);
+            localStorage.setItem('blogCategory', response.data.blogCategory);
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('username', response.data.username);
             localStorage.setItem('userId', response.data.userId);
@@ -85,7 +90,8 @@ export const signinUser = data => {
                 response.data.email, 
                 response.data.username, 
                 response.data.userId,
-                response.data.message
+                response.data.message,
+                response.data.blogCategory
             ));
         })
         .catch(error => {
@@ -104,7 +110,8 @@ export const checkAuthState = () => {
             const username = localStorage.getItem('username');
             const userId = localStorage.getItem('userId');
             const email = localStorage.getItem('email');
-            dispatch(signinSuccess(token, email, username, userId));
+            const blogCategory = localStorage.getItem('blogCategory');
+            dispatch(signinSuccess(token, email, username, userId, blogCategory));
         }
     }
 }

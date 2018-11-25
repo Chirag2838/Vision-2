@@ -6,7 +6,8 @@ const initialState = {
     username: null,
     email: null,
     userId: null,
-    message: ''
+    message: '',
+    blogCategory: null
 }
 
 const logoutReducer = (state, action) => {
@@ -18,7 +19,14 @@ const signupUserReducer = (state, action) => {
     console.log('email', action.email);
     console.log('username', action.username);
     console.log('userId', action.userId);
-    return updateObject(state, {token: action.token, email: action.email, username: action.username, userId: action.userId, message: action.message});
+    return updateObject(state, {
+        token: action.token, 
+        email: action.email, 
+        username: action.username, 
+        userId: action.userId, 
+        message: action.message,
+        blogCategory: action.blogCategory
+    });
 }
 
 const signinUserReducer = (state, action) => {
@@ -26,7 +34,14 @@ const signinUserReducer = (state, action) => {
     console.log('email', action.email);
     console.log('username', action.username);
     console.log('userId', action.userId);
-    return updateObject(state, {token: action.token, email: action.email, username: action.username, userId: action.userId, message: action.message});
+    return updateObject(state, {
+        token: action.token, 
+        email: action.email, 
+        username: action.username, 
+        userId: action.userId, 
+        message: action.message,
+        blogCategory: action.blogCategory
+    });
 }
 
 const reducer = (state = initialState, action) => {

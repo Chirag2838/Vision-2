@@ -35,24 +35,32 @@ module.exports.signup = (req, res) => {
                                     }
                                     else {
                                         console.log(doc);
-                                        res.json({success: true, message: 'successfully signed up', token: token, username: user.username, email:user.email, userId: user._id});
+                                        res.json({
+                                            success: true, 
+                                            message: 'successfully signed up', 
+                                            token: token, 
+                                            username: user.username, 
+                                            email:user.email, 
+                                            userId: user._id, 
+                                            blogCategory: user.blogCategory
+                                        });
                                     }
                                 }) 
                             }
                         })
                     }
                     else {
-                        res.json({success: false, message: 'Username already exists', token: null});
+                        res.json({success: false, message: 'Username already exists', token: null, blogCategory: null});
                     }
                 })
             }
             else {
-                res.json({success: false, message: 'Email already exists', token: null});
+                res.json({success: false, message: 'Email already exists', token: null, blogCategory: null});
             }
         })
     }
     else {
-        res.json({success: false, message: 'password did not match', token: null});
+        res.json({success: false, message: 'password did not match', token: null, blogCategory: null});
     }
 }
 
@@ -77,17 +85,25 @@ module.exports.signin = (req, res) => {
                         console.log(err);
                     }
                     else {
-                        // console.log(doc);
-                        res.json({success: true, message: 'Successfully Signed in', token: token, email: user.email, username: user.username, userId: user._id});
+                        console.log(doc);
+                        res.json({
+                            success: true, 
+                            message: 'Successfully Signed in', 
+                            token: token, 
+                            email: user.email, 
+                            username: user.username, 
+                            userId: user._id, 
+                            blogCategory: user.blogCategory
+                        });
                     }
                 })
             }
             else {
-                res.json({success: false, message: 'password incorrect', token: null});
+                res.json({success: false, message: 'password incorrect', token: null, blogCategory: null});
             }
         }
         else {
-            res.json({success: false, message: 'User not found', token: null});
+            res.json({success: false, message: 'User not found', token: null, blogCategory: null});
         }
     })
 }

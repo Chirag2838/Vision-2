@@ -22,19 +22,26 @@ class App extends Component {
   render() {
 
     let routes = (
-
       <Switch>
-        <Route path='/MyBlogProfile' component={MyBlogProfile} />
-        <Route path='/choose' component={BlogCategory} />
-        <Route path='/homepage' component={Homepage} />
-        <Route path='/search' component={SearchPage} />
-        <Route path='/NewPost' component={NewPost} />
+        <Route path='/auth' component={Auth} />
         <Route path='/signin' component={Signin} />
         <Route path='/signup' component={Signup} />
-        <Route path='/' component={Auth} />
-        <Redirect path='/' />
+        <Redirect to='/auth' />
       </Switch>
-    );
+    )
+
+    if (this.props.isAuthenticated) {
+      routes = (
+        <Switch>
+          <Route path='/MyBlogProfile' component={MyBlogProfile} />
+          <Route path='/choose' exact component={BlogCategory} />
+          <Route path='/homepage' component={Homepage} />
+          <Route path='/search' component={SearchPage} />
+          <Route path='/NewPost' component={NewPost} />
+          <Redirect to='/homepage' />
+        </Switch>
+      )
+    }
 
     return (
 
@@ -45,10 +52,16 @@ class App extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.auth.token !== null
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     checkToken: () => dispatch(actions.checkAuthState())
   }
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(App));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
