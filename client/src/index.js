@@ -9,6 +9,7 @@ import authReducer from './store/reducers/auth.js';
 import postReducer from './store/reducers/post';
 import searchReducer from './store/reducers/search';
 import blogReducer from './store/reducers/blog';
+import userReducer from './store/reducers/userDetails';
 
 import './index.css';
 import App from './App';
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
     auth: authReducer,
     post: postReducer,
     search: searchReducer,
-    blog: blogReducer
+    blog: blogReducer,
+    user: userReducer
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));

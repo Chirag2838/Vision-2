@@ -17,6 +17,12 @@ class SearchPage extends Component {
         }
     }
 
+    userClickHandler = userId => {
+        console.log('fn', userId);
+        this.props.getTheUser(userId);
+        this.props.history.push('/userProfile');
+    }
+
     mainClass = ["container-fluid", classes.mainClass];
     cards = ["row", classes.cards];
 
@@ -30,7 +36,7 @@ class SearchPage extends Component {
             <div className={this.mainClass.join(' ')}>
                 {this.props.usersList.map(userList => {
                     return (
-                        <div className={this.cards.join(' ')} key = {userList}>
+                        <div onClick={() => this.userClickHandler(userList)} className={this.cards.join(' ')} key = {userList}>
                             <p>{userList}</p>
                         </div>
                     )
@@ -51,7 +57,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        findUsers: (value) => dispatch(actions.findUsersAction(value))
+        findUsers: (value) => dispatch(actions.findUsersAction(value)),
+        getTheUser: (userId) => dispatch(actions.getDetailsAction(userId))
     }
 }
 

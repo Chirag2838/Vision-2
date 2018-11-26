@@ -5,3 +5,5 @@ export { newPostAction, getAllPostsAction, fetchPostAction, fetchOneDone, addCom
 export { searchAction, findUsersAction } from './search';
 
 export { addCategoryAction, blogPostsByUsername } from './blog';
+
+export { getDetailsAction } from './userDetail';

@@ -2,8 +2,13 @@ import React, { Component } from 'react';
 import classes from './SideDrawer.css';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import * as actions from '../../../store/actions';
 
 class SideDrawer extends Component {
+
+    userProfileHandler = () => {
+        this.props.getUserDetail(localStorage.getItem('username'));
+    }
     
     titleClass = ["row", classes.titleClass];
     buttonClass = ["row", classes.buttonClass];
@@ -23,13 +28,13 @@ class SideDrawer extends Component {
                     <p>Vision</p>
                 </div>
                 <div className={this.buttonClass.join(' ')}>
-                    <button className="btn btn-outline-secondary">My Profile</button>
+                <NavLink to='/userProfile'><button onClick={this.userProfileHandler} className="btn btn-outline-secondary">My Profile</button></NavLink>
                 </div>
                 <div className={this.buttonClass.join(' ')}>
                     <button className="btn btn-outline-secondary">See Blogs</button>
                 </div>
                 <div className={this.buttonClass.join(' ')}>
-                    <NavLink to='/choose'>Create Blog</NavLink>
+                    <NavLink to='/choose'><button className="btn btn-outline-secondary">Create Blog</button></NavLink>
                 </div>
                 <div className={this.buttonClass.join(' ')}>
                     <button className="btn btn-outline-secondary">Following</button>
@@ -48,4 +53,10 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(SideDrawer);
+const mapDispatchToProps = dispatch => {
+    return {
+        getUserDetail: (userId) => dispatch(actions.getDetailsAction(userId))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SideDrawer);

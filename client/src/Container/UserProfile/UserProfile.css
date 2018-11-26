@@ -1,0 +1,41 @@
+.containerClass {
+    padding-top: 150px;
+}
+
+.postGrid {
+    background-color: white;
+    width: 550px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px 1px gray;
+    cursor: pointer;
+}
+
+.posttitle {
+    font-family: 'Acme', sans-serif;
+    font-size: xx-large;
+}
+
+.usernameText {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 20px;
+}
+
+.dateStyle {
+    font-family: 'Patrick Hand', cursive;
+    color: gray;
+}
+
+.postCntnt {
+    font-family: 'Cookie', cursive;
+    font-size: 25px;
+}
+
+.usernameStyle {
+    font-family: 'Righteous', cursive;
+    font-size: 30px;
+}
+
+.followFollowing {
+    font-family: 'Cookie', cursive;
+    font-size: 25px;
+}

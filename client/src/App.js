@@ -13,6 +13,7 @@ import MyBlogProfile from './Container/Blog/MyBlogProfile/MyBlogProfile';
 import * as actions from './store/actions';
 import { connect } from 'react-redux';
 import CurrentPost from './Container/Post/CurrentPost/CurrentPost';
+import UserProfile from './Container/UserProfile/UserProfile';
 
 class App extends Component {
 
@@ -34,6 +35,7 @@ class App extends Component {
     if (this.props.isAuthenticated) {
       routes = (
         <Switch>
+          <Route path='/userProfile' component={UserProfile} />
           <Route path='/currentPost' component={CurrentPost} />
           <Route path='/MyBlogProfile' component={MyBlogProfile} />
           <Route path='/choose' exact component={BlogCategory} />

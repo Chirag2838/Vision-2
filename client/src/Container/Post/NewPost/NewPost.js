@@ -33,6 +33,8 @@ class NewPost extends Component {
         data.username = this.props.username
         console.log('data for post', data);
         this.props.addNewPost(data);
+
+        this.props.history.push('/homepage');
     }
 
     checkValidity(value, rules) {

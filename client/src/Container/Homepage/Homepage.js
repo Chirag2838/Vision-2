@@ -7,6 +7,12 @@ import { Redirect } from 'react-router-dom';
 
 class Homepage extends Component {
 
+    state = {
+        like: false,
+        value: 'Like',
+        id: null
+    }
+
     componentDidMount () {
         this.props.getAllPosts();
     }
@@ -18,6 +24,21 @@ class Homepage extends Component {
     //     }
     // }
 
+    likeHandler = () => {
+
+        let likeValue = null;
+
+        if (this.state.value === 'Like') {
+            likeValue = 'Unlike'
+        }
+        else {
+            likeValue = 'Like'
+        }
+        this.setState(prevState => {
+            return ({like: !prevState.like, value: likeValue})
+        })
+    }
+
     commentClick = (postId) => {
         console.log(postId);
         this.props.fetchPost(postId);
@@ -26,8 +47,17 @@ class Homepage extends Component {
     postGrid = ["row", classes.postGrid];
     posttitle = ["card-title", classes.posttitle];
     postCntnt = ["card-text", classes.postCntnt];
+    likeBtn = "btn btn-outline-info btn-sm"
 
     render () {
+
+        if (this.state.value === 'Unlike') {
+            this.likeBtn = "btn btn-outline-danger btn-sm"
+        }
+        else {
+            this.likeBtn = "btn btn-outline-info btn-sm"
+        }
+        
 
         if(this.props.posts == null) {
             return <Spinner />
@@ -59,8 +89,8 @@ class Homepage extends Component {
                             <div className="card-body">
                                 <h5 className={this.posttitle.join(' ')}>{allPost.postTitle}</h5>
                                 <p className={this.postCntnt.join(' ')}>{allPost.postContent}</p>
-                                <button type="button" className="btn btn-outline-info btn-sm">
-                                    Like
+                                <button onClick={this.likeHandler} type="button" className={this.likeBtn}>
+                                    {this.state.value}
                                 </button>
                                 <button onClick={() => this.commentClick(allPost._id)} type="button" class="btn btn-outline-info btn-sm" style={{marginLeft: "2em"}} >
                                     Comment

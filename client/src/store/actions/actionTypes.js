@@ -11,3 +11,4 @@ export const BLOG_MESSAGE = 'BLOG_MESSAGE';
 export const POST_FETCHED = 'POST_FETCHED';
 export const FETCH_POST_SUCCESS = 'FETCH_POST_SUCCESS';
 export const ADD_COMMENT = 'ADD_COMMENT';
+export const DETAILS = 'DETAILS';

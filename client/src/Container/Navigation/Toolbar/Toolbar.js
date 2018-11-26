@@ -64,12 +64,12 @@ class Toolbar extends Component {
                         <div className="input-group mb-3">
                             <input onChange={(event) => this.inputHandler(event)} type="text" className="form-control" placeholder="Name/Username" aria-label="Recipient's username" aria-describedby="basic-addon2" />
                             <div className="input-group-append">
-                                <button className={this.searchButton.join(' ')} onClick={this.searchHandler} disabled={!this.state.valid} type="button"><NavLink disabled={!this.state.valid} className={classes.navlink} to="/search">Search</NavLink></button>
+                                <NavLink to="/search"><button className={this.searchButton.join(' ')} onClick={this.searchHandler} disabled={!this.state.valid} type="button">Search</button></NavLink>
                             </div>
                         </div>
                     </div>
                     <div className={this.btnClass1.join(' ')}>
-                        <button className="btn btn-outline-info"><NavLink className={classes.newPost} to='/NewPost'>Create Post</NavLink></button>
+                        <NavLink to='/NewPost'><button className="btn btn-outline-info">Create Post</button></NavLink>
                     </div>
                     <div className={this.btnClass2.join(' ')}>
                         <button className="btn btn-outline-secondary" onClick={this.logoutNow}>Logout</button>
