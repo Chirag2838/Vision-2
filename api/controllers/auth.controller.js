@@ -21,7 +21,7 @@ module.exports.signup = (req, res) => {
                         });
                         user.save((err3, data) => {
                             console.log('welcome to vision');
-                            console.log(data);
+                            console.log('saving', data);
                             if (err3) {
                                 console.log(err3);
                             }
@@ -29,6 +29,8 @@ module.exports.signup = (req, res) => {
                                 var token = jwt.sign(data.toJSON(), 'secretKey',{
                                     expiresIn : 86400
                                 });
+
+                                console.log(token);
                                 User.findOneAndUpdate({'email': data.email}, {$set:{'token': token}}, {new: true}, (err4, doc) => {
                                     if(err4) {
                                         console.log('err4', err4);

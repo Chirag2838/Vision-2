@@ -86,7 +86,7 @@ class UserProfile extends Component {
             <div className={this.containerClass.join(' ')}>
                 <div className="row">
                     <div className="col-md-3 offset-2">
-                        <span className = {classes.usernameStyle}>{this.props.user.firstname} {this.props.user.lastname}</span>
+                        <span className = {classes.usernameStyle}>{this.props.user.firstname}</span><span className = {classes.usernameStyle}> {this.props.user.lastname}</span>
                     </div>
                     <div className="col-md-4 offset-1">
                         <span className={classes.followFollowing}>{this.props.user.following.length} Followings  {this.props.user.followers.length} Followers</span>

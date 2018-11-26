@@ -16,7 +16,8 @@ module.exports.fullUser = (req, res) => {
                 }
                 else {
                     console.log(posts);
-                    res.json({user: user, posts: posts});
+                    const sortPost = posts.reverse();
+                    res.json({user: user, posts: sortPost});
                 }
             })
         }
