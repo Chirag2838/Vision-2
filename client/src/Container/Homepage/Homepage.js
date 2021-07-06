@@ -10,7 +10,8 @@ class Homepage extends Component {
     state = {
         like: false,
         value: 'Like',
-        id: null
+        id: null,
+        liked: new Map()
     }
 
     componentDidMount () {
@@ -24,19 +25,29 @@ class Homepage extends Component {
     //     }
     // }
 
-    likeHandler = () => {
+    likeHandler = (id) => {
 
         let likeValue = null;
 
-        if (this.state.value === 'Like') {
-            likeValue = 'Unlike'
+        let likedPosts = this.state.liked;
+
+        // let post = post.find(element => element.id == id)
+        let post = likedPosts.get(id);
+
+        if (!post) {
+            likedPosts.set(id, true);
+            console.log(likedPosts);
+            this.setState({liked: likedPosts});
+        } else {
+            let value = likedPosts.get(id);
+            value = !value
+            likedPosts.set(id, value);
+            this.setState({liked: likedPosts})
         }
-        else {
-            likeValue = 'Like'
-        }
-        this.setState(prevState => {
-            return ({like: !prevState.like, value: likeValue})
-        })
+
+        // this.setState(prevState => {
+        //     return ({like: !prevState.like, value: likeValue})
+        // })
     }
 
     commentClick = (postId) => {
@@ -47,17 +58,18 @@ class Homepage extends Component {
     postGrid = ["row", classes.postGrid];
     posttitle = ["card-title", classes.posttitle];
     postCntnt = ["card-text", classes.postCntnt];
-    likeBtn = "btn btn-outline-info btn-sm"
+    likeBtn = "btn btn-info btn-sm"
+    unlikeBtn = "btn btn-outline-secondary btn-sm"
 
     render () {
 
-        if (this.state.value === 'Unlike') {
-            this.likeBtn = "btn btn-outline-danger btn-sm"
-        }
-        else {
-            this.likeBtn = "btn btn-outline-info btn-sm"
-        }
-        
+        // if (this.state.value === 'Unlike') {
+        //     this.likeBtn = "btn btn-outline-danger btn-sm"
+        // }
+        // else {
+        //     this.likeBtn = "btn btn-outline-info btn-sm"
+        // }
+    
 
         if(this.props.posts == null) {
             return <Spinner />
@@ -76,6 +88,7 @@ class Homepage extends Component {
         let postMap = (
             <div>
                 {this.props.posts.map(allPost => {
+                    console.log('state', this.state.liked.get(allPost._id));
                     return (
                         <div key={allPost._id} class="card bg-light mb-3" style={{maxWidth: "50rem", marginLeft: "18em", marginTop: "6em"}}>
                             <div className="card-header">
@@ -89,8 +102,8 @@ class Homepage extends Component {
                             <div className="card-body">
                                 <h5 className={this.posttitle.join(' ')}>{allPost.postTitle}</h5>
                                 <p className={this.postCntnt.join(' ')}>{allPost.postContent}</p>
-                                <button onClick={this.likeHandler} type="button" className={this.likeBtn}>
-                                    {this.state.value}
+                                <button onClick={() => this.likeHandler(allPost._id)} type="button" className={this.state.liked.get(allPost._id) ? this.likeBtn : this.unlikeBtn}>
+                                    {this.state.liked.get(allPost._id) ? "Unlike" : "Like"}
                                 </button>
                                 <button onClick={() => this.commentClick(allPost._id)} type="button" class="btn btn-outline-info btn-sm" style={{marginLeft: "2em"}} >
                                     Comment

@@ -36,12 +36,6 @@ class SideDrawer extends Component {
                 <div className={this.buttonClass.join(' ')}>
                     <NavLink to='/choose'><button className="btn btn-outline-secondary">Create Blog</button></NavLink>
                 </div>
-                <div className={this.buttonClass.join(' ')}>
-                    <button className="btn btn-outline-secondary">Following</button>
-                </div>
-                <div className={this.buttonClass.join(' ')}>
-                    <button className="btn btn-outline-secondary">Following</button>
-                </div>
             </div>
         )
     }

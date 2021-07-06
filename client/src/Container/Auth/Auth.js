@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Aux from '../../hoc/Aux/Aux';
+import Aux from '../../hoc/Auxi/Auxi';
 import classes from './Auth.css';
 
 class Auth extends Component {
